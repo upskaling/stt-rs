@@ -14,7 +14,9 @@ async fn api_message(data: web::Json<Message>) -> HttpResponse {
             .arg("type")
             .arg(data.message.as_str())
             .spawn()
-            .expect("failed to execute process");
+            .expect("failed to execute process")
+            .wait()
+            .expect("failed to wait for process");
     }
 
     return HttpResponse::Ok().json(data.into_inner());
