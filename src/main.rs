@@ -9,7 +9,7 @@ struct Message {
 }
 
 async fn api_message(data: web::Json<Message>) -> HttpResponse {
-    if data.message != "" {
+    if !data.message.is_empty() {
         Command::new("xdotool")
             .arg("type")
             .arg(data.message.as_str())
@@ -19,7 +19,7 @@ async fn api_message(data: web::Json<Message>) -> HttpResponse {
             .expect("failed to wait for process");
     }
 
-    return HttpResponse::Ok().json(data.into_inner());
+    HttpResponse::Ok().json(data.into_inner())
 }
 
 #[actix_web::main]
