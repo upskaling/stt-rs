@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ok</title>
+    <meta name="theme-color" content="#ffffff" />
+    <title>clavier</title>
+    <link rel="manifest" href="/manifest.json"/>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
@@ -13,6 +15,7 @@
     <h1>clavier</h1>
 
     <form>
+      <label for="message">Message</label>
       <textarea
         name="message"
         id="message"
@@ -49,7 +52,7 @@
         if (send_debounced.timeout) {
           clearTimeout(send_debounced.timeout);
         }
-        send_debounced.timeout = setTimeout(send, 1000);
+        send_debounced.timeout = setTimeout(send, 1100);
       }
 
       message.addEventListener("keyup", send_debounced);
